@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Introduction — WEB115</title>
+
+  <!-- Optional shared stylesheet -->
+  <link rel="stylesheet" href="styles/default.css" />
+
+  <style>
+    :root { --maxw: 880px; --text:#111; --muted:#555; --bg:#fff; --accent:#ff6a00; }
+    html, body { background:var(--bg); color:var(--text); font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin:0; }
+    .wrap { max-width:var(--maxw); margin:0 auto; padding:1rem; }
+    nav ul { display:flex; gap:.75rem; list-style:none; padding:0; margin:0 0 1rem 0; flex-wrap:wrap; }
+    nav a { text-decoration:none; color:var(--text); padding:.5rem .8rem; border-radius:.5rem; border:1px solid #ddd; }
+    nav a[aria-current="page"]{ border-color:var(--accent); outline:2px solid var(--accent); }
+    .public-ack { font-style:italic; color:var(--muted); margin:.25rem 0 1.25rem; }
+    /* Big name (NOT a heading) */
+    .display-name { text-align:center; font-weight:700; font-size:clamp(1.8rem,4.5vw,2.4rem); margin:.25rem 0 1rem; }
+    .photo { text-align:center; margin:1rem 0 .5rem; }
+    .photo img { max-width:100%; height:auto; border-radius:.5rem; box-shadow:0 6px 24px rgba(0,0,0,.08); }
+    .caption { text-align:center; font-style:italic; color:var(--muted); margin:.35rem 0 1.25rem; }
+    .section-title { font-size:1rem; margin:.5rem 0 .25rem; color:#222; }
+    .personal-statement { margin:.25rem 0 1.25rem; }
+    .info-list { padding-left:1.25rem; }
+    .info-list li { margin:.35rem 0; }
+    .info-list li strong { font-weight:700; }
+    .courses ul { margin:.35rem 0 .75rem 1.25rem; }
+    .quote { text-align:center; margin:2rem 0 0; }
+    .quote blockquote { margin:0; font-size:1.1rem; font-style:italic; }
+    footer { margin-top:2rem; border-top:1px solid #eee; color:var(--muted); }
+    footer .footer-inner { display:flex; gap:.75rem; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:1rem 0; }
+    .small { font-size:.925rem; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html" aria-current="page">Introduction</a></li>
+        <li><a href="contract.html">Contract</a></li>
+      </ul>
+    </nav>
+
+    <p class="public-ack">
+      <em>I understand that what I put here is publicly available on the web, and I won’t put anything here I don’t want the public to see. — I.E., 09/17/2025</em>
+    </p>
+
+    <!-- Large centered name + mascot (NOT a heading) -->
+    <p class="display-name">Isaiah “Statics” Evans ~ Intrepid Eagle</p>
+  </header>
+
+  <main id="content" class="wrap" role="main">
+    <!-- Replace with a headshot to be fully rubric-compliant -->
+    <figure class="photo">
+      <img src="images/intro-photo.jpg" alt="Isaiah Evans — car photo at Vix Garage in Charlotte" />
+    </figure>
+    <p class="caption"><em>My dream car at Vix Garage in Charlotte.</em></p>
+
+    <h2 class="section-title">Personal Statement</h2>
+    <p class="personal-statement">
+      I’m Isaiah Evans, a CPCC student and creator focused on web development and automotive photo/video.
+      This term I’m building a clean portfolio site, practicing consistent version control, and streamlining my editing workflow.
+      I want to finish with publishable pages and habits I can use in my business.
+    </p>
+
+    <ul class="info-list">
+      <li><strong>Personal Background:</strong> I’m a car-obsessed creator who spends weekends at meets shooting photos and short cinematic reels. Outside of that, I’m into fitness and learning new tech skills.</li>
+      <li><strong>Professional Background:</strong> Owner of Streamline Studios LLC. I shoot car rollers, cinematic reels, portraits, graduations, and events.</li>
+      <li><strong>Academic Background:</strong> Currently at Central Piedmont. I’m building my web skills so I can support my creative business with solid websites, better workflows, and automation.</li>
+      <li><strong>Background in this Subject:</strong> Comfortable with cameras, editing, and publishing content. I’ve set up GitHub Pages and basic HTML/CSS before and want to get faster and more professional with modern web tools.</li>
+      <li><strong>Primary Computer:</strong> Windows 11 Pro (desktop parts list), using Notepad++ and GitHub.</li>
+
+      <li class="courses"><strong>Courses I’m Taking, &amp; Why:</strong>
+        <ul>
+          <li><strong>WEB-140 – Web Development Tools:</strong> Get fluent with Git/GitHub, extensions, and fast deployments.</li>
+          <li><strong>WEB-115 – Web Markup &amp; Scripting:</strong> Strengthen HTML/CSS/JS for client sites and my portfolio.</li>
+          <li><strong>ART-111 – Art Appreciation:</strong> Improve visual literacy and design sense for cleaner layouts and branding.</li>
+          <li><strong>CIS-110 – Introduction to Computers:</strong> Sharpen core computing concepts that support troubleshooting and productivity.</li>
+          <li><strong>MAT-172 – Precalculus/Trigonometry:</strong> Build problem-solving skills useful for scripting and technical thinking.</li>
+          <li><strong>PSY-150 – General Psychology:</strong> Understand perception/motivation—helpful for UX, content strategy, and teamwork.</li>
+        </ul>
+      </li>
+
+      <li><strong>Funny/Interesting Item to Remember Me By:</strong> I’m probably the one filming a BMW on rollers after class.</li>
+      <li><strong>I’d Also Like to Share:</strong> I aim to confidently use command line + GitHub, manage projects, and deploy quickly (GitHub Pages/Netlify). I’m detail-oriented and persistent; I can over-tweak, so I’m using time-blocking to ship on schedule.</li>
+    </ul>
+
+    <figure class="quote">
+      <blockquote>“Be so good they can’t ignore you.”</blockquote>
+      <figcaption>— <cite>Steve Martin</cite></figcaption>
+    </figure>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-inner small">
+      <span>© 2025 Isaiah Evans</span>
+      <span><a href="#content">Back to top</a></span>
+      <!-- Add validator links if required by your instructor -->
+      <!-- <span><a href="https://validator.w3.org/nu/">HTML Validator</a></span>
+      <span><a href="https://jigsaw.w3.org/css-validator/">CSS Validator</a></span> -->
+    </div>
+  </footer>
+</body>
+</html>
 
