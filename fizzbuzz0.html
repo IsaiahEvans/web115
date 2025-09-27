@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB115 — FizzBuzz 0</title>
+
+  <!-- Use your shared stylesheet -->
+  <link rel="stylesheet" href="default.css" />
+
+  <!-- Fonts (kept in <head>) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Top nav (centered by default.css) -->
+  <header class="wrap">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="contract.html">Contract</a></li>
+        <li><a href="brand.html">Brand</a></li>
+        <li><a href="fizzbuzz0.html" aria-current="page">FizzBuzz 0</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content" class="wrap" role="main">
+    <h2>FizzBuzz 0</h2>
+
+    <!-- Greeting target -->
+    <h3 id="greeting" class="mt-1 center">Welcome to Streamline Donut Shop!</h3>
+
+    <!-- Form for user input -->
+    <form id="nameForm" class="mt-2" novalidate>
+      <div class="center">
+        <input type="text" id="first_name" placeholder="Enter your first name" required>
+        <input type="text" id="middle_initial" placeholder="M" maxlength="1" aria-label="Middle initial (optional)">
+        <input type="text" id="last_name" placeholder="Enter your last name" required>
+        <button class="button" type="submit">Show Greeting &amp; Start</button>
+      </div>
+      <p id="errors" class="center small" style="color:#b00020;margin-top:.5rem;"></p>
+    </form>
+
+    <!-- Output list (1..limit inclusive) -->
+    <section class="mt-2" aria-labelledby="output-title">
+      <h3 id="output-title">Output</h3>
+      <ol id="output" class="mt-1"></ol>
+    </section>
+
+    <!-- Validation links (also in footer, but rubric says add them) -->
+    <p class="small">
+      <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener">HTML Validator</a> ·
+      <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener">CSS Validator</a>
+    </p>
+  </main>
+
+  <!-- Footer (centered) -->
+  <footer class="wrap site-footer">
+    <nav aria-label="Profile links" class="footer-links">
+      <a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://isaiahevans.github.io" target="_blank" rel="noopener">GitHub.io</a>
+      <a href="https://www.freecodecamp.org/Isaiah_Evans21" target="_blank" rel="noopener">freeCodeCamp</a>
+      <a href="https://www.codecademy.com/profiles/Staticsnoise" target="_blank" rel="noopener">Codecademy</a>
+      <a href="https://jsfiddle.net/u/staticsnoise/fiddles" target="_blank" rel="noopener">JSFiddle</a>
+    </nav>
+    <nav aria-label="Validation links" class="footer-links">
+      <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener">HTML Validator</a>
+      <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener">CSS Validator</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2025 Isaiah Evans</span>
+      <a href="#content">Back to top</a>
+      <span>Page built by Isaiah Evans</span>
+    </div>
+  </footer>
+
+  <!-- Lint/validation helper your instructor wants -->
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+
+  <!-- Page script -->
+  <script>
+    // helpers
+    const cap = s => s ? s.trim().toLowerCase().replace(/^\w/, c => c.toUpperCase()) : "";
+
+    const form = document.getElementById("nameForm");
+    const greetingEl = document.getElementById("greeting");
+    const errorsEl = document.getElementById("errors");
+    const outputEl = document.getElementById("output");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorsEl.textContent = "";
+      outputEl.innerHTML = ""; // reset previous run
+
+      const first = cap(document.getElementById("first_name").value);
+      const midRaw = document.getElementById("middle_initial").value.trim();
+      const middle = midRaw ? midRaw[0].toUpperCase() : ""; // only 1 char
+      const last  = cap(document.getElementById("last_name").value);
+
+      // basic validation: first + last required
+      if (!first || !last) {
+        errorsEl.textContent = "Please enter your first and last name.";
+        (!first ? document.getElementById("first_name") : document.getElementById("last_name")).focus();
+        return;
+      }
+
+      // greeting (omit the period if no middle initial)
+      const fullName = middle ? `${first} ${middle}. ${last}` : `${first} ${last}`;
+      greetingEl.textContent = `Welcome to Streamline Donut Shop, ${fullName}!`;
+
+      // prompt for limit, personalized with first name
+      let limit = null;
+      while (limit === null) {
+        const raw = prompt(`How high do you want to count, ${first}? (1–125 suggested)`);
+        if (raw === null) { // user cancelled; handle gracefully
+          limit = 125;
+          break;
+        }
+        const n = parseInt(raw, 10);
+        if (Number.isFinite(n) && n > 0) {
+          limit = n;
+        } else {
+          alert("Please enter a valid positive number.");
+        }
+      }
+
+      // themed output (two words + even/odd)
+      // you can change THEME1/THEME2 to any two on-brand words
+      const THEME1 = "Glazed";
+      const THEME2 = "Glory";
+
+      for (let i = 1; i <= limit; i++) {
+        const li = document.createElement("li");
+        const parity = (i % 2 === 0) ? "even" : "odd";
+        li.textContent = `${THEME1} ${THEME2} — the number is ${parity}`;
+        outputEl.appendChild(li);
+      }
+    });
+  </script>
+</body>
+</html>
