@@ -122,8 +122,8 @@
     }
 
     // small classroom-safe cleaner
-    const BAD_WORDS = ["nigg","fag","retard","bitch","slut","whore","cunt","kike","chink","spic"];
-    const isClean = (s) => !BAD_WORDS.some(b => (s||"").toLowerCase().includes(b));
+    const BAD_WORDS = ["nigga","fag","retard","bitch","slut","whore","cunt","kike","chink","spic"];
+    const isClean = (s) => !BAD_WORDS.some((b) => (s || "").toLowerCase().includes(b));
     function cleanWord(raw, fallback){
       if (!raw) return fallback;
       let s = raw.replace(/<[^>]*>/g,"").replace(/[^a-z ]/gi," ").trim();
@@ -136,7 +136,7 @@
 
     function renderList(wordA, wordB, firstDivisor, secondDivisor){
       outputEl.innerHTML = "";
-      for(let n=START; n<=END; n++){
+      for (let n = START; n <= END; n++) {
         const li = document.createElement("li");
         let text = `${n}. `;
         const byA = checkDivision(n, firstDivisor);
