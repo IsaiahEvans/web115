@@ -69,7 +69,11 @@
 
   <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
   <script>
-    const cap = s => s ? s.trim().toLowerCase().replace(/^\w/, c => c.toUpperCase()) : "";
+    const cap = (s) =>
+  s
+    ? s.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase())
+    : "";
+
 
     const form = document.getElementById("nameForm");
     const greetingEl = document.getElementById("greeting");
