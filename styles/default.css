@@ -175,3 +175,30 @@ a:focus-visible, .button:focus-visible {
   outline-offset: 2px;
   border-radius: var(--radius);
 }
+
+/* Header layout: logo left, nav centered */
+.site-header {
+  position: relative;
+  display: flex;
+  justify-content: center;     /* keeps nav centered horizontally */
+  align-items: center;
+  min-height: 64px;
+}
+
+/* Brand logo pinned to the left without affecting nav centering */
+.site-header .brand {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  line-height: 0;
+}
+
+.site-header .brand img { display:block; height:auto; }
+
+/* Keep your existing nav centering rules */
+nav[aria-label="Main"] ul{
+  list-style:none; margin:0; padding:0;
+  display:flex; justify-content:center; align-items:center; gap:1.25rem;
+}
