@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB115 — FizzBuzz 3</title>
+
+  <link rel="stylesheet" href="styles/default.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="wrap">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="contract.html">Contract</a></li>
+        <li><a href="brand.html">Brand</a></li>
+        <li><a href="fizzbuzz0.html">FizzBuzz 0</a></li>
+        <li><a href="fizzbuzz1.html">FizzBuzz 1</a></li>
+        <li><a href="fizzbuzz2.html">FizzBuzz 2</a></li>
+        <li><a href="fizzbuzz3.html" aria-current="page">FizzBuzz 3</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content" class="wrap">
+    <h2>FizzBuzz 3 — Fizz, Buzz, BANG!</h2>
+    <p class="small">Counts 1–140. Uses a flexible, array-driven approach for divisors 3, 5, and 7 (and easily more).</p>
+
+    <h3 id="greeting" class="center">Greetings!</h3>
+
+    <!-- Name form -->
+    <div class="form-container">
+      <form id="nameForm" novalidate>
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" placeholder="Enter your first name" required>
+
+        <label for="middle_initial">Middle Initial</label>
+        <input type="text" id="middle_initial" placeholder="M" maxlength="1" aria-label="Middle initial (optional)">
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" placeholder="Enter your last name" required>
+
+        <button class="button" type="submit">Submit</button>
+      </form>
+      <p id="errors" class="center small" style="color:#b00020;margin-top:.5rem;"></p>
+    </div>
+
+    <!-- Options (show after submit) -->
+    <form id="optionsForm" class="mt-2 center hidden" aria-label="Options">
+      <span class="small" style="display:inline-block;margin-right:.5rem;">Divisors &amp; words:</span>
+      <input type="number" id="div1" value="3" min="1" step="1" aria-label="First divisor">
+      <input type="text"   id="word1" value="Fizz!" aria-label="Word for first divisor">
+      <input type="number" id="div2" value="5" min="1" step="1" aria-label="Second divisor">
+      <input type="text"   id="word2" value="Buzz!" aria-label="Word for second divisor">
+      <input type="number" id="div3" value="7" min="1" step="1" aria-label="Third divisor">
+      <input type="text"   id="word3" value="BANG!" aria-label="Word for third divisor">
+
+      <button class="button" type="submit">Apply &amp; Regenerate</button>
+    </form>
+
+    <section class="mt-2" aria-labelledby="output-title">
+      <h3 id="output-title">Output</h3>
+      <ol id="output" class="mt-1"></ol>
+    </section>
+
+    <p class="small">
+      Try: 21 (3·7), 15 (3·5), 35 (5·7), 105 (3·5·7).
+    </p>
+  </main>
+
+  <footer class="wrap site-footer">
+    <nav aria-label="Profile links" class="footer-links">
+      <a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://isaiahevans.github.io" target="_blank" rel="noopener">GitHub.io</a>
+      <a href="https://www.freecodecamp.org/Isaiah_Evans21" target="_blank" rel="noopener">freeCodeCamp</a>
+      <a href="https://www.codecademy.com/profiles/Staticsnoise" target="_blank" rel="noopener">Codecademy</a>
+      <a href="https://jsfiddle.net/u/staticsnoise/fiddles" target="_blank" rel="noopener">JSFiddle</a>
+    </nav>
+    <nav aria-label="Validation links" class="footer-links">
+      <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener">HTML Validator</a>
+      <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener">CSS Validator</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2025 Isaiah Evans</span>
+      <a href="#content">Back to top</a>
+      <span>Page built by Isaiah Evans</span>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    // helpers
+    const $ = (id) => document.getElementById(id);
+    const cap = (s) => (s ? s.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase()) : "");
+
+    // DOM
+    const form = $("nameForm");
+    const optionsForm = $("optionsForm");
+    const greetingEl = $("greeting");
+    const errorsEl = $("errors");
+    const outputEl = $("output");
+
+    const div1El = $("div1"), word1El = $("word1");
+    const div2El = $("div2"), word2El = $("word2");
+    const div3El = $("div3"), word3El = $("word3");
+
+    // config
+    const START = 1, END = 140;
+    const BAD_WORDS = ["nigg","fag","retard","bitch","slut","whore","cunt","kike","chink","spic"];
+    const isClean = (s) => !BAD_WORDS.some((b) => (s || "").toLowerCase().includes(b));
+
+    function cleanWord(raw, fallback){
+      if (!raw) return fallback;
+      let s = raw.replace(/<[^>]*>/g, "").replace(/[^a-z !?]/gi, " ").trim();
+      if (!s || !isClean(s)) return fallback;
+      if (s.length > 16) s = s.slice(0, 16).trim();
+      s = cap(s);
+      if (!/[.!?]$/.test(s)) s += "!";
+      return s;
+    }
+
+    function checkDivision(n, divisor){ return divisor !== 0 && n % divisor === 0; }
+
+    function getRules(){
+      // Build rules from the three inputs; easy to extend if you add more.
+      const d1 = Math.max(1, parseInt(div1El.value || "3", 10));
+      const d2 = Math.max(1, parseInt(div2El.value || "5", 10));
+      const d3 = Math.max(1, parseInt(div3El.value || "7", 10));
+      const w1 = cleanWord(word1El.value || "Fizz!", "Fizz!");
+      const w2 = cleanWord(word2El.value || "Buzz!", "Buzz!");
+      const w3 = cleanWord(word3El.value || "BANG!", "BANG!");
+      return [
+        { div: d1, word: w1 },
+        { div: d2, word: w2 },
+        { div: d3, word: w3 },
+      ];
+    }
+
+    function renderList(rules){
+      outputEl.innerHTML = "";
+      for (let n = START; n <= END; n++) {
+        let parts = [];
+        for (const rule of rules) {
+          if (checkDivision(n, rule.div)) parts.push(rule.word);
+        }
+        const text = parts.length ? `${n}. ${parts.join(" ")}` : `${n}. Fizz Buzz BANG Prep`;
+        const li = document.createElement("li");
+        li.textContent = text;
+        outputEl.appendChild(li);
+      }
+    }
+
+    // submit name → greet + show options + render
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorsEl.textContent = "";
+
+      const first = cap($("first_name").value);
+      const mid   = ($("middle_initial").value.trim()[0] || "").toUpperCase();
+      const last  = cap($("last_name").value);
+
+      if (!first || !last) {
+        errorsEl.textContent = "Please enter your first and last name.";
+        (!first ? $("first_name") : $("last_name")).focus();
+        return;
+      }
+
+      const full = mid ? `${first} ${mid}. ${last}` : `${first} ${last}`;
+      greetingEl.textContent = `Welcome to Streamline Studios, ${full}!`;
+
+      optionsForm.classList.remove("hidden");
+      renderList(getRules());
+    });
+
+    // adjust options → regenerate
+    optionsForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      errorsEl.textContent = "";
+      renderList(getRules());
+    });
+  </script>
+
+  <!-- validator bubble -->
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+</body>
+</html>
