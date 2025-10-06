@@ -5,12 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WEB115 — FizzBuzz 1</title>
 
+  <!-- Your class stylesheet -->
   <link rel="stylesheet" href="styles/default.css" />
+
+  <!-- Fonts (same across your site) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Top navigation -->
   <header class="wrap">
     <nav aria-label="Main">
       <ul>
@@ -24,32 +28,38 @@
     </nav>
   </header>
 
+  <!-- Page content -->
   <main id="content" class="wrap">
     <h2>FizzBuzz 1</h2>
     <p class="small">Counts from 1 to 140. Replaces numbers divisible by 3 and 5 with your on-brand words.</p>
 
-    <!-- Greeting target -->
-    <h3 id="greeting" class="mt-1 center">Welcome to Streamline Studios!</h3>
+    <!-- Before submit -->
+    <h3 id="greeting" class="center">Greetings!</h3>
 
-    <!-- Name form (no prompt for limit in this activity) -->
-    <form id="nameForm" class="mt-2" novalidate>
-      <div class="center">
+    <!-- Name form in a boxed panel -->
+    <div class="form-container">
+      <form id="nameForm" novalidate>
+        <label for="first_name">First Name</label>
         <input type="text" id="first_name" placeholder="Enter your first name" required>
-        <input type="text" id="middle_initial" placeholder="M" maxlength="1" aria-label="Middle initial (optional)">
-        <input type="text" id="last_name" placeholder="Enter your last name" required>
-        <button class="button" type="submit">Show Greeting &amp; Generate</button>
-      </div>
-      <p id="errors" class="center small" style="color:#b00020;margin-top:.5rem;"></p>
-    </form>
 
-    <!-- Optional: let the user customize words (defaults prefilled) -->
-    <form id="wordForm" class="mt-2 center" aria-label="Word choices">
+        <label for="middle_initial">Middle Initial</label>
+        <input type="text" id="middle_initial" placeholder="M" maxlength="1" aria-label="Middle initial (optional)">
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" placeholder="Enter your last name" required>
+
+        <button class="button" type="submit">Submit</button>
+      </form>
+      <p id="errors" class="center small" style="color:#b00020;margin-top:.5rem;"></p>
+    </div>
+
+    <!-- Hidden until after submit -->
+    <form id="wordForm" class="mt-2 center hidden" aria-label="Word choices">
       <input type="text" id="word3" value="Turbo!" aria-label="Word for multiples of 3">
       <input type="text" id="word5" value="Traction!" aria-label="Word for multiples of 5">
       <button class="button" type="submit">Apply Words &amp; Regenerate</button>
     </form>
 
-    <!-- Output -->
     <section class="mt-2" aria-labelledby="output-title">
       <h3 id="output-title">Output</h3>
       <ol id="output" class="mt-1"></ol>
@@ -61,6 +71,7 @@
     </p>
   </main>
 
+  <!-- Footer -->
   <footer class="wrap site-footer">
     <nav aria-label="Profile links" class="footer-links">
       <a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a>
@@ -80,121 +91,25 @@
     </div>
   </footer>
 
- <script>
-  "use strict";
+  <!-- Page script -->
+  <script>
+    "use strict";
 
-  const cap = (s) => s ? s.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase()) : "";
-  const el  = (id) => document.getElementById(id);
+    // shorthand helpers
+    const cap = (s) => s ? s.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase()) : "";
+    const $ = (id) => document.getElementById(id);
 
-  const form = el("nameForm");
-  const greetingEl = el("greeting");
-  const errorsEl = el("errors");
-  const outputEl = el("output");
-  const wordForm = el("wordForm");
-  const word3El = el("word3");
-  const word5El = el("word5");
+    // DOM refs
+    const form = $("nameForm");
+    const greetingEl = $("greeting");
+    const errorsEl = $("errors");
+    const outputEl = $("output");
+    const wordForm = $("wordForm");
+    const word3El = $("word3");
+    const word5El = $("word5");
 
-  const START = 1;
-  const END   = 140;
-  const DEFAULT_3 = "Turbo!";
-  const DEFAULT_5 = "Traction!";
+    // config
+    const START = 1, END = 140;
+    const DEFAULT_3 = "Turbo!", DEFAULT_5 = "Traction!";
 
-  // very small classroom-safe blocklist (case-insensitive)
-  const BAD_WORDS = [
-    "nigg", "fag", "retard", "bitch", "slut", "whore",
-    "cunt", "kike", "chink", "spic"
-  ];
-
-  function isClean(str) {
-    const lc = str.toLowerCase();
-    return !BAD_WORDS.some(b => lc.includes(b));
-  }
-
-  function cleanWord(raw, fallback) {
-    if (!raw) return fallback;
-    // strip tags, keep letters/spaces, clamp length
-    let s = raw.replace(/<[^>]*>/g, "").replace(/[^a-z ]/gi, " ").trim();
-    if (s.length === 0) return fallback;
-    if (s.length > 14) s = s.slice(0, 14).trim();
-    if (!isClean(s)) return fallback;
-    // nice casing and optional punct
-    s = cap(s);
-    if (!/[.!?]$/.test(s)) s += "!";
-    return s;
-  }
-
-  function renderList(word3, word5) {
-    outputEl.innerHTML = "";
-    for (let n = START; n <= END; n++) {
-      const li = document.createElement("li");
-      let text = `${n}. `;
-
-      const by3 = (n % 3 === 0);
-      const by5 = (n % 5 === 0);
-
-      if (by3 && by5) {
-        text += `${word3} ${word5}`;
-      } else if (by3) {
-        text += word3;
-      } else if (by5) {
-        text += word5;
-      } else {
-        text += "Turbo Traction";
-      }
-      li.textContent = text;
-      outputEl.appendChild(li);
-    }
-  }
-
-  // name submit → greet + initial list
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    errorsEl.textContent = "";
-
-    const first = cap(el("first_name").value);
-    const midRaw = el("middle_initial").value.trim();
-    const middle = midRaw ? midRaw[0].toUpperCase() : "";
-    const last  = cap(el("last_name").value);
-
-    if (!first || !last) {
-      errorsEl.textContent = "Please enter your first and last name.";
-      (!first ? el("first_name") : el("last_name")).focus();
-      return;
-    }
-
-    const fullName = middle ? `${first} ${middle}. ${last}` : `${first} ${last}`;
-    greetingEl.textContent = `Welcome to Streamline Studios, ${fullName}!`;
-
-    const w3 = cleanWord(word3El.value, DEFAULT_3);
-    const w5 = cleanWord(word5El.value, DEFAULT_5);
-    if (w3 !== word3El.value || w5 !== word5El.value) {
-      errorsEl.textContent = "Inappropriate or invalid words were replaced with safe defaults.";
-      word3El.value = w3;
-      word5El.value = w5;
-    }
-    renderList(w3, w5);
-  });
-
-  // changing word choices → regenerate
-  wordForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const w3 = cleanWord(word3El.value, DEFAULT_3);
-    const w5 = cleanWord(word5El.value, DEFAULT_5);
-    if (w3 !== word3El.value || w5 !== word5El.value) {
-      errorsEl.textContent = "Inappropriate or invalid words were replaced with safe defaults.";
-      word3El.value = w3;
-      word5El.value = w5;
-    } else {
-      errorsEl.textContent = "";
-    }
-    renderList(w3, w5);
-  });
-
-  // initial render with defaults
-  word3El.value = DEFAULT_3;
-  word5El.value = DEFAULT_5;
-  renderList(DEFAULT_3, DEFAULT_5);
-</script>
-
-</body>
-</html>
+    // tiny classro
