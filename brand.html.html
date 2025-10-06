@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB115 — Brand Guide</title>
+
+  
+  <link rel="stylesheet" href="styles/default.css" />
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+</head>
+<body class="brand">
+  
+  <div data-include="components/header.html"></div>
+
+  <main id="content" class="wrap" role="main">
+    <h2>Brand Guide</h2>
+
+    <section aria-labelledby="mission">
+      <h3 id="mission">Mission</h3>
+      <p>Deliver cinematic car and lifestyle visuals with a clean, minimal aesthetic and bold accents.</p>
+    </section>
+
+    <section aria-labelledby="colors">
+      <h3 id="colors">Color &amp; Typography</h3>
+
+      <ul class="color-list">
+        <li class="color-item" style="--chip:#0F1115; --ink:#ffffff;">
+          <code>#0F1115</code> — <span>Ink / Headings</span>
+        </li>
+        <li class="color-item" style="--chip:#FF6A00; --ink:#ffffff;">
+          <code>#FF6A00</code> — <span>Accent / Buttons</span>
+        </li>
+        <li class="color-item is-light" style="--chip:#FFFFFF; --ink:#111111;">
+          <code>#FFFFFF</code> — <span>Background</span>
+        </li>
+      </ul>
+
+      <ul class="usage">
+        <li><strong>Headings:</strong> <span class="font-heading">Poppins 800/600</span></li>
+        <li><strong>Body:</strong> <span class="font-body">Inter 400/600</span></li>
+        <li><strong>CTAs:</strong> Accent orange with hover underline</li>
+      </ul>
+    </section>
+  </main>
+
+  
+  <div data-include="components/footer.html"></div>
+
+  
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+  <script src="scripts/HTMLInclude.js"></script>
+</body>
+</html>
