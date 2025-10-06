@@ -12,8 +12,12 @@
   --radius: 10px;
 }
 
-/* ---- Base / Reset-ish ---- */
-* { box-sizing: border-box; }
+
+html { box-sizing: border-box; }
+body, header, nav, main, footer, section, article,
+h1, h2, h3, p, ul, ol, li, figure, figcaption, img,
+a, code, pre { box-sizing: inherit; }
+
 html, body { height: 100%; }
 body{
   margin: 0;
@@ -28,15 +32,31 @@ a{ color: var(--accent); text-underline-offset: 2px; }
 a:hover{ text-decoration: underline; }
 code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-/* ---- Layout ---- */
+
 .wrap{ max-width: 980px; margin: 0 auto; padding: 1rem; }
 
-/* ---- Headings ---- */
-h1,h2,h3{
+
+h1{
   font-family: Poppins, Inter, system-ui, sans-serif;
   line-height: 1.25;
   margin: 0 0 .5rem;
+  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem);
 }
+
+h2{
+  font-family: Poppins, Inter, system-ui, sans-serif;
+  line-height: 1.25;
+  margin: 1rem 0 .5rem;
+  font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem);
+}
+
+h3{
+  font-family: Poppins, Inter, system-ui, sans-serif;
+  line-height: 1.25;
+  margin: 1rem 0 .5rem;
+  font-size: 1.125rem;
+}
+
 h1{ font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
 h2{ font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem); margin-top: 1rem; }
 h3{ font-size: 1.125rem; margin-top: 1rem; }
@@ -134,7 +154,7 @@ figcaption{ font-size: .9rem; color: var(--ink-2); }
 .color-item span{ color: var(--ink-2); }
 
 .usage{ margin: .75rem 0 0; }
-.examples h1{ margin-bottom: .25rem; }
+
 
 .palette{ display:none; } /* (optional placeholder if you add swatches later) */
 .swatch{ display:inline-flex; padding:.5rem .75rem; border-radius:.5rem; border:1px solid var(--border); background: var(--sw, #eee); }
