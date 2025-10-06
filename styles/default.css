@@ -35,7 +35,7 @@ code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
 
 .wrap{ max-width: 980px; margin: 0 auto; padding: 1rem; }
 
-
+/* ---- Headings ---- */
 h1{
   font-family: Poppins, Inter, system-ui, sans-serif;
   line-height: 1.25;
