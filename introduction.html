@@ -4,25 +4,29 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WEB115 — Introduction</title>
-
-  
   <link rel="stylesheet" href="styles/default.css" />
-
-  <!-- fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  
-  <div data-include="components/header.html"></div>
+  <header class="wrap">
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html" aria-current="page">Introduction</a></li>
+        <li><a href="contract.html">Contract</a></li>
+        <li><a href="brand.html">Brand</a></li>
+        <li><a href="fizzbuzz0.html">FizzBuzz 0</a></li>
+      </ul>
+    </nav>
+  </header>
 
   <main id="content" class="wrap" role="main">
     <h1>Introduction</h1>
     <p>Hello! I’m <strong>Isaiah Evans</strong>. This page introduces me and my goals for WEB115.</p>
 
     <figure>
-      
       <img src="images/DSC00568.jpg" alt="Isaiah Evans" style="max-width:100%;height:auto;">
       <figcaption>A recent photo from my camera roll.</figcaption>
     </figure>
@@ -37,11 +41,25 @@
     </section>
   </main>
 
-  
-  <div data-include="components/footer.html"></div>
+  <footer class="wrap site-footer">
+    <nav aria-label="Profile links" class="footer-links">
+      <a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://isaiahevans.github.io" target="_blank" rel="noopener">GitHub.io</a>
+      <a href="https://www.freecodecamp.org/Isaiah_Evans21" target="_blank" rel="noopener">freeCodeCamp</a>
+      <a href="https://www.codecademy.com/profiles/Staticsnoise" target="_blank" rel="noopener">Codecademy</a>
+      <a href="https://jsfiddle.net/u/staticsnoise/fiddles" target="_blank" rel="noopener">JSFiddle</a>
+    </nav>
+    <nav aria-label="Validation links" class="footer-links">
+      <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener">HTML Validator</a>
+      <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener">CSS Validator</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2025 Isaiah Evans</span>
+      <a href="#content">Back to top</a>
+      <span>Page built by Isaiah Evans</span>
+    </div>
+  </footer>
 
-  
   <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
-  <script src="scripts/HTMLInclude.js"></script>
 </body>
 </html>
