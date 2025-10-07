@@ -12,7 +12,7 @@
   --radius: 10px;
 }
 
-
+/* ---- Base / Reset-ish ---- */
 html { box-sizing: border-box; }
 body, header, nav, main, footer, section, article,
 h1, h2, h3, p, ul, ol, li, figure, figcaption, img,
@@ -27,37 +27,53 @@ body{
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
 img{ max-width: 100%; height: auto; display: block; }
-a{ color: var(--accent); text-underline-offset: 2px; }
-a:hover{ text-decoration: underline; }
+
+/* Links (merged) */
+a{ color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+a:hover{ text-decoration: none; } /* or keep underline on hover—your call */
+a:focus-visible, .button:focus-visible{
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
 code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
 
-
+/* ---- Layout ---- */
 .wrap{ max-width: 980px; margin: 0 auto; padding: 1rem; }
 
-/* ---- Headings ---- */
-h1{
+/* Header layout: logo left, nav centered */
+.site-header{
+  position: relative;
+  display: flex;
+  justify-content: center; /* keeps nav centered horizontally */
+  align-items: center;
+  min-height: 64px;
+}
+/* Brand logo pinned to the left without affecting nav centering */
+.site-header .brand{
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+  line-height: 0;
+}
+.site-header .brand img{ display:block; height:auto; }
+
+/* ---- Headings (single definitions) ---- */
+h1, h2, h3{
   font-family: Poppins, Inter, system-ui, sans-serif;
   line-height: 1.25;
   margin: 0 0 .5rem;
-  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem);
 }
+h1{ font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
+h2{ margin-top: 1rem; font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem); }
+h3{ margin-top: 1rem; font-size: 1.125rem; }
 
-h2{
-  font-family: Poppins, Inter, system-ui, sans-serif;
-  line-height: 1.25;
-  margin: 1rem 0 .5rem;
-  font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem);
-}
-
-h3{
-  font-family: Poppins, Inter, system-ui, sans-serif;
-  line-height: 1.25;
-  margin: 1rem 0 .5rem;
-  font-size: 1.125rem;
-}
-
-/* ---- Main nav (top) ---- */
+/* ---- Main nav (top) ---- (single block) */
 nav[aria-label="Main"] ul{
   list-style: none;
   margin: 0; padding: 0;
@@ -148,11 +164,8 @@ figcaption{ font-size: .9rem; color: var(--ink-2); }
 }
 .color-item code{ font-weight: 700; }
 .color-item span{ color: var(--ink-2); }
-
 .usage{ margin: .75rem 0 0; }
-
-
-.palette{ display:none; } /* (optional placeholder if you add swatches later) */
+.palette{ display:none; } /* optional placeholder */
 .swatch{ display:inline-flex; padding:.5rem .75rem; border-radius:.5rem; border:1px solid var(--border); background: var(--sw, #eee); }
 
 /* ---- Utilities ---- */
@@ -167,38 +180,4 @@ figcaption{ font-size: .9rem; color: var(--ink-2); }
   .wrap{ padding: .75rem; }
   nav[aria-label="Main"] ul{ gap: .75rem; flex-wrap: wrap; }
   .button{ width: 100%; text-align: center; }
-}
-a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-a:hover { text-decoration: none; } /* or keep underline on hover—your call */
-a:focus-visible, .button:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: var(--radius);
-}
-
-/* Header layout: logo left, nav centered */
-.site-header {
-  position: relative;
-  display: flex;
-  justify-content: center;     /* keeps nav centered horizontally */
-  align-items: center;
-  min-height: 64px;
-}
-
-/* Brand logo pinned to the left without affecting nav centering */
-.site-header .brand {
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: inline-block;
-  line-height: 0;
-}
-
-.site-header .brand img { display:block; height:auto; }
-
-/* Keep your existing nav centering rules */
-nav[aria-label="Main"] ul{
-  list-style:none; margin:0; padding:0;
-  display:flex; justify-content:center; align-items:center; gap:1.25rem;
 }
