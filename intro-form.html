@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WEB115 — Introduction Form</title>
+
+  <!-- Brand CSS & fonts (use your existing file paths) -->
+  <link rel="stylesheet" href="styles/default.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+
+  <!-- Favicons (adjust paths if needed) -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+</head>
+<body>
+  <!-- Basic header/nav to match your other pages -->
+  <header class="wrap site-header">
+    <a class="brand" href="index.html" aria-label="Streamline Studios — Home">
+      <img src="images/streamline-logo.svg" alt="Streamline Studios" width="160" height="40">
+    </a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="intro-form.html" aria-current="page">Intro Form</a></li>
+        <li><a href="contract.html">Contract</a></li>
+        <li><a href="brand.html">Brand</a></li>
+        <li><a href="fizzbuzz0.html">FizzBuzz 0</a></li>
+        <li><a href="fizzbuzz1.html">FizzBuzz 1</a></li>
+        <li><a href="fizzbuzz2.html">FizzBuzz 2</a></li>
+        <li><a href="fizzbuzz3.html">FizzBuzz 3</a></li>
+        <li><a href="fizzbuzz4.html">FizzBuzz 4</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content" class="wrap" role="main">
+    <h2>Introduction Form</h2>
+    <p class="small">Fill the form and submit — the Introduction below will regenerate to match. HTML handles
+      validation (required fields, URL format, etc.).</p>
+
+    <!-- FORM -->
+    <form id="introForm" class="mt-2" novalidate>
+      <fieldset>
+        <legend>Name</legend>
+        <label for="first_name">First Name</label>
+        <input id="first_name" name="first_name" type="text" required>
+
+        <label for="middle_initial">Middle Initial <span class="small">(optional)</span></label>
+        <input id="middle_initial" name="middle_initial" type="text" maxlength="1" pattern="[A-Za-z]?" aria-describedby="mi-help">
+        <span id="mi-help" class="small">One letter max.</span>
+
+        <label for="last_name">Last Name</label>
+        <input id="last_name" name="last_name" type="text" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Profile</legend>
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" required>
+
+        <label for="state">State</label>
+        <input id="state" name="state" type="text" required>
+
+        <label for="photo">Photo URL <span class="small">(optional)</span></label>
+        <input id="photo" name="photo" type="url" inputmode="url" placeholder="https://…/your-photo.jpg">
+
+        <label for="background">Professional Background</label>
+        <textarea id="background" name="background" rows="3" required></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Goals (3)</legend>
+        <label for="goal1">Goal 1</label>
+        <input id="goal1" name="goal1" type="text" required>
+
+        <label for="goal2">Goal 2</label>
+        <input id="goal2" name="goal2" type="text" required>
+
+        <label for="goal3">Goal 3</label>
+        <input id="goal3" name="goal3" type="text" required>
+      </fieldset>
+
+      <fieldset>
+        <legend>Courses</legend>
+        <div id="courseFields" class="mt-1" aria-describedby="course-help"></div>
+        <p id="course-help" class="small">Add, edit, or remove courses as needed.</p>
+        <button type="button" class="button" id="addCourseBtn">+ Add Course</button>
+      </fieldset>
+
+      <div class="mt-2">
+        <button type="submit" class="button">Submit &amp; Regenerate</button>
+        <button type="button" id="resetBtn" class="button">Reset to My Info</button>
+        <button type="button" id="copyBtn" class="button">Copy Output</button>
+      </div>
+      <p id="formErrors" class="small" style="color:#b00020;margin-top:.5rem;"></p>
+    </form>
+
+    <!-- OUTPUT -->
+    <section class="mt-2" aria-labelledby="intro-title" aria-live="polite">
+      <h2 id="intro-title">Introduction (Generated)</h2>
+
+      <figure id="photoFigure" style="display:none;">
+        <img id="photoPreview" alt="Profile photo" style="max-width:100%;height:auto;">
+        <figcaption class="small">Profile photo</figcaption>
+      </figure>
+
+      <article id="introOutput">
+        <!-- Filled by JS to mirror your Introduction page -->
+      </article>
+
+      <p class="small mt-1">
+        <a href="https://validator.w3.org/nu/" target="_blank" rel="noopener">HTML Validator</a> ·
+        <a href="https://jigsaw.w3.org/css-validator/" target="_blank" rel="noopener">CSS Validator</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <nav aria-label="Profile links" class="footer-links">
+      <a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://isaiahevans.github.io" target="_blank" rel="noopener">GitHub.io</a>
+      <a href="https://www.freecodecamp.org/Isaiah_Evans21" target="_blank" rel="noopener">freeCodeCamp</a>
+      <a href="https://www.codecademy.com/profiles/Staticsnoise" target="_blank" rel="noopener">Codecademy</a>
+      <a href="https://jsfiddle.net/u/staticsnoise/fiddles" target="_blank" rel="noopener">JSFiddle</a>
+      <a href="streamlinestudios.com/">Site Designed by Streamline Studios</a>
+    </nav>
+    <div class="footer-meta">
+      <span>© 2025 Isaiah Evans</span>
+      <a href="#content">Back to top</a>
+      <span>Page built by Isaiah Evans</span>
+    </div>
+  </footer>
+
+  <!-- Validator cloud (course requirement) -->
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+
+  <script>
+    // --- Helpers ---
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
+    const cap = s => s ? s.trim().toLowerCase().replace(/^\w/u, c => c.toUpperCase()) : "";
+
+    // Default "D.I." values (your info, hardcoded)
+    const DI = {
+      first: "Isaiah",
+      mi: "M",
+      last: "Evans",
+      city: "Charlotte",
+      state: "NC",
+      photo: "images/DSC00568.jpg", // change if needed or leave blank
+      background: "Photographer & creator focusing on automotive visuals and clean web UI.",
+      goals: [
+        "Master clean, valid HTML and CSS",
+        "Build a consistent personal brand and site structure",
+        "Publish assignments on GitHub Pages"
+      ],
+      courses: [
+        "WEB115 — Web Markup & Scripting",
+        "WEB140 — Web Development Tools",
+        "CSC151 — JavaScript Fundamentals"
+      ]
+    };
+
+    // Dynamically add a course input row
+    function addCourseField(value = "") {
+      const wrap = document.createElement("div");
+      wrap.className = "course-row";
+      wrap.style.display = "flex";
+      wrap.style.gap = ".5rem";
+      wrap.style.marginBottom = ".5rem";
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.required = true;
+      input.value = value;
+      input.placeholder = "Course name";
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "button";
+      btn.textContent = "Remove";
+      btn.addEventListener("click", () => wrap.remove());
+
+      wrap.append(input, btn);
+      $("#courseFields").append(wrap);
+    }
+
+    // Prefill the form with DI values
+    function fillDefaults() {
+      $("#first_name").value = DI.first;
+      $("#middle_initial").value = DI.mi;
+      $("#last_name").value = DI.last;
+      $("#city").value = DI.city;
+      $("#state").value = DI.state;
+      $("#photo").value = DI.photo || "";
+      $("#background").value = DI.background;
+      $("#goal1").value = DI.goals[0] || "";
+      $("#goal2").value = DI.goals[1] || "";
+      $("#goal3").value = DI.goals[2] || "";
+
+      $("#courseFields").innerHTML = "";
+      (DI.courses || []).forEach(c => addCourseField(c));
+    }
+
+    // Render the output to match your Introduction page style
+    function renderOutput(data) {
+      const name = data.mi ? `${data.first} ${data.mi}. ${data.last}` : `${data.first} ${data.last}`;
+      const out = [];
+
+      out.push(`<h3>Hello! I’m <strong>${name}</strong>. This page introduces me and my goals for WEB115.</h3>`);
+
+      // background
+      out.push(`<section aria-labelledby="bg"><h3 id="bg">Professional Background</h3><p>${data.background}</p></section>`);
+
+      // goals list
+      out.push(`<section aria-labelledby="goals"><h3 id="goals">Goals for the Course</h3>
+        <ul>
+          ${data.goals.filter(Boolean).map(g => `<li>${g}</li>`).join("")}
+        </ul>
+      </section>`);
+
+      // courses list
+      out.push(`<section aria-labelledby="courses"><h3 id="courses">Current / Recent Courses</h3>
+        <ul>
+          ${data.courses.filter(Boolean).map(c => `<li>${c}</li>`).join("")}
+        </ul>
+      </section>`);
+
+      $("#introOutput").innerHTML = out.join("");
+
+      // photo preview (optional)
+      if (data.photo) {
+        $("#photoPreview").src = data.photo;
+        $("#photoFigure").style.display = "block";
+      } else {
+        $("#photoFigure").style.display = "none";
+      }
+    }
+
+    // Gather and validate form values; return object or null if invalid
+    function getFormData() {
+      const requiredIds = ["first_name","last_name","city","state","background","goal1","goal2","goal3"];
+      for (const id of requiredIds) {
+        const el = document.getElementById(id);
+        if (!el.checkValidity()) {
+          $("#formErrors").textContent = "Please complete all required fields (and fix any validation messages).";
+          el.reportValidity();
+          el.focus();
+          return null;
+        }
+      }
+      const goals = [$("#goal1").value.trim(), $("#goal2").value.trim(), $("#goal3").value.trim()];
+      const courses = $$("#courseFields input").map(i => i.value.trim()).filter(Boolean);
+
+      return {
+        first: cap($("#first_name").value),
+        mi: $("#middle_initial").value.trim().toUpperCase(),
+        last: cap($("#last_name").value),
+        city: cap($("#city").value),
+        state: $("#state").value.trim(),
+        photo: $("#photo").value.trim(),
+        background: $("#background").value.trim(),
+        goals,
+        courses
+      };
+    }
+
+    // Copy output HTML to clipboard
+    async function copyOutput() {
+      try {
+        const html = $("#introOutput").innerHTML;
+        const text = html.replace(/<[^>]+>/g, "").trim();
+        await navigator.clipboard.writeText(text);
+        alert("Intro output copied to clipboard (plain text).");
+      } catch (e) {
+        alert("Could not copy. Select and copy manually.");
+      }
+    }
+
+    // Wire up
+    window.addEventListener("DOMContentLoaded", () => {
+      fillDefaults();
+      $("#addCourseBtn").addEventListener("click", () => addCourseField(""));
+      $("#resetBtn").addEventListener("click", fillDefaults);
+      $("#copyBtn").addEventListener("click", copyOutput);
+
+      // Initial render (matches DI)
+      renderOutput(DI);
+
+      $("#introForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        $("#formErrors").textContent = "";
+        const data = getFormData();
+        if (data) renderOutput(data);
+      });
+    });
+  </script>
+</body>
+</html>
