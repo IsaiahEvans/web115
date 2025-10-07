@@ -64,14 +64,25 @@ code, pre{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace
 .site-header .brand img{ display:block; height:auto; }
 
 /* ---- Headings (single definitions) ---- */
+/* ---- Headings (single definition) ---- */
 h1, h2, h3{
   font-family: Poppins, Inter, system-ui, sans-serif;
   line-height: 1.25;
   margin: 0 0 .5rem;
 }
+
 h1{ font-size: clamp(1.8rem, 1.2rem + 2vw, 2.4rem); }
-h2{ margin-top: 1rem; font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem); }
-h3{ margin-top: 1rem; font-size: 1.125rem; }
+
+h2{
+  margin-top: 1rem;
+  font-size: clamp(1.4rem, 1rem + 1vw, 1.8rem);
+}
+
+h3{
+  margin-top: 1rem;
+  font-size: 1.125rem;
+}
+
 
 /* ---- Main nav (top) ---- (single block) */
 nav[aria-label="Main"] ul{
