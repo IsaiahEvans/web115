@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Streamline Studios — Digital Business Card</title>
+
+  <!-- Brand fonts (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Embedded stylesheet (assignment requirement) -->
+  <style>
+    :root{
+      --ink:#0f1115; --ink-2:#1f2937; --bg:#0b0d11; --card:#ffffff;
+      --accent:#ff6a00; --border:#e5e7eb; --radius:14px; --shadow:0 12px 40px rgba(0,0,0,.25);
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0; background: radial-gradient(1200px 600px at 20% 10%, rgba(255,106,0,.12), transparent 60%), var(--bg);
+      color:var(--ink); font:16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      display:grid; place-items:center; padding:2rem;
+    }
+
+    /* card wrapper keeps it centered, no scrolling needed */
+    .card{
+      width:min(680px, 92vw);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:2rem;
+      display:grid; grid-template-columns: 88px 1fr;
+      gap:1.25rem;
+    }
+    .logo{
+      width:88px; height:88px; border-radius:12px; overflow:hidden;
+      display:grid; place-items:center; background:#fff;
+      border:1px solid var(--border);
+    }
+    .logo img{ width:100%; height:auto; display:block; }
+
+    .name{ margin:0; font:800 1.75rem/1.15 Poppins, Inter, sans-serif; color:var(--ink); }
+    .title{ margin:.15rem 0 .65rem; color:var(--ink-2); font-weight:600; }
+    .tag{ display:inline-block; color:#fff; background:var(--accent); padding:.25rem .5rem; border-radius:999px; font-size:.85rem; }
+
+    .cols{ display:grid; grid-template-columns: 1fr 1fr; gap:1rem; margin-top:1rem; }
+    .block{ border:1px dashed var(--border); border-radius:10px; padding:.75rem .9rem; background:#fff; }
+    .block h3{ margin:.1rem 0 .5rem; font:700 1rem/1.2 Poppins, Inter, sans-serif; color:var(--ink); }
+    .block p{ margin:.25rem 0; }
+    .block a{ color:var(--accent); text-decoration:none; }
+    .block a:hover{ text-decoration:underline; }
+
+    .footer-line{
+      margin-top:1rem; display:flex; justify-content:center; gap:.75rem; font-size:.95rem; color:var(--ink-2);
+    }
+    .footer-line a{ color:var(--ink-2); text-decoration:none; border-bottom:1px solid transparent; }
+    .footer-line a:hover{ border-bottom-color: currentColor; }
+
+    /* make it tidy on phones */
+    @media (max-width:560px){
+      .card{ grid-template-columns: 64px 1fr; padding:1.25rem; }
+      .logo{ width:64px; height:64px; }
+      .name{ font-size:1.4rem; }
+      .cols{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card" role="main" aria-label="Business card">
+    <!-- Logo block -->
+    <div class="logo" aria-hidden="true">
+      <!-- use your existing brand mark; path is relative to this folder -->
+      <img src="../images/streamline-logo-1024.png" alt="Streamline Studios logo">
+    </div>
+
+    <!-- Identity -->
+    <div>
+      <h1 class="name">Isaiah M. Evans</h1>
+      <p class="title">Founder &amp; Creative Director <span class="tag">Streamline Studios</span></p>
+
+      <div class="cols">
+        <section class="block" aria-labelledby="contact">
+          <h3 id="contact">Contact</h3>
+          <p><strong>Phone:</strong> (704) 555-0188</p>
+          <p><strong>Email:</strong> <a href="mailto:hello@streamlinestudios.com">hello@streamlinestudios.com</a></p>
+          <p><strong>Website:</strong> <a href="https://isaiahevans.github.io/web115/" target="_blank" rel="noopener">isaiahevans.github.io/web115</a></p>
+        </section>
+
+        <section class="block" aria-labelledby="address">
+          <h3 id="address">Studio</h3>
+          <p>1200 Apex Drive, Suite 240<br>Charlotte, NC 28202</p>
+          <p><strong>Hours:</strong> By appointment only</p>
+        </section>
+
+        <section class="block" aria-labelledby="social">
+          <h3 id="social">Social</h3>
+          <p><a href="https://github.com/IsaiahEvans" target="_blank" rel="noopener">GitHub</a> ·
+             <a href="https://www.codecademy.com/profiles/Staticsnoise" target="_blank" rel="noopener">Codecademy</a> ·
+             <a href="https://jsfiddle.net/u/staticsnoise/fiddles" target="_blank" rel="noopener">JSFiddle</a></p>
+        </section>
+
+        <section class="block" aria-labelledby="about">
+          <h3 id="about">What We Do</h3>
+          <p>Automotive photo &amp; video, brand kits, and lightweight web pages built with clean, accessible markup.</p>
+          <p><em>Tagline:</em> Turbo visuals. Real traction.</p>
+        </section>
+      </div>
+
+      <div class="footer-line">
+        <span>© Streamline Studios, LLC</span>
+        <span>•</span>
+        <a href="../index.html">Back to WEB115 Home</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Validation cloud required by course -->
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+</body>
+</html>
