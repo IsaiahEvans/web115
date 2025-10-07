@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WEB115 — Introduction Form</title>
 
-  <!-- Brand CSS & fonts (use your existing file paths) -->
   <link rel="stylesheet" href="styles/default.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 
-  <!-- Favicons (adjust paths if needed) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
   <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
+
+  <!-- a11y helper for visually-hidden text (keeps validator happy) -->
+  <style>
+    .sr-only{
+      position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+    }
+  </style>
 </head>
 <body>
-  <!-- Basic header/nav to match your other pages -->
   <header class="wrap site-header">
     <a class="brand" href="index.html" aria-label="Streamline Studios — Home">
       <img src="images/streamline-logo.svg" alt="Streamline Studios" width="160" height="40">
@@ -27,25 +33,24 @@
     <nav aria-label="Main">
       <ul>
         <li><a href="index.html">Home</a></li>
-      <li><a href="introduction.html">Introduction</a></li>
-      <li><a href="contract.html">Contract</a></li>
-      <li><a href="brand.html">Brand</a></li>
-      <li><a href="fizzbuzz0.html">FizzBuzz 0</a></li>
-      <li><a href="fizzbuzz1.html">FizzBuzz 1</a></li>
-      <li><a href="fizzbuzz2.html">FizzBuzz 2</a></li>
-      <li><a href="fizzbuzz3.html">FizzBuzz 3</a></li>
-      <li><a href="fizzbuzz4.html">FizzBuzz 4</a></li>
-      <li><a href="intro-form.html">intro-form 4</a></li>
-      <li><a href="onepage_original/">One-Page (Original)</a></li>
-      <li><a href="onepage_site/">One-Page (Brand)</a></li>
+        <li><a href="introduction.html">Introduction</a></li>
+        <li><a href="contract.html">Contract</a></li>
+        <li><a href="brand.html">Brand</a></li>
+        <li><a href="fizzbuzz0.html">FizzBuzz 0</a></li>
+        <li><a href="fizzbuzz1.html">FizzBuzz 1</a></li>
+        <li><a href="fizzbuzz2.html">FizzBuzz 2</a></li>
+        <li><a href="fizzbuzz3.html">FizzBuzz 3</a></li>
+        <li><a href="fizzbuzz4.html">FizzBuzz 4</a></li>
+        <li><a href="intro-form.html" aria-current="page">Intro Form</a></li>
+        <li><a href="onepage_original/">One-Page (Original)</a></li>
+        <li><a href="onepage_site/">One-Page (Brand)</a></li>
       </ul>
     </nav>
   </header>
 
-  <main id="content" class="wrap" role="main">
+  <main id="content" class="wrap">
     <h2>Introduction Form</h2>
-    <p class="small">Fill the form and submit — the Introduction below will regenerate to match. HTML handles
-      validation (required fields, URL format, etc.).</p>
+    <p class="small">Fill the form and submit — the Introduction below will regenerate to match. HTML handles validation (required fields, URL format, etc.).</p>
 
     <!-- FORM -->
     <form id="introForm" class="mt-2" novalidate>
@@ -109,12 +114,16 @@
       <h2 id="intro-title">Introduction (Generated)</h2>
 
       <figure id="photoFigure" style="display:none;">
-        <img id="photoPreview" alt="Profile photo" style="max-width:100%;height:auto;">
+        <!-- tiny transparent 1×1 so img always has a src -->
+        <img id="photoPreview"
+             src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs="
+             alt="Profile photo" style="max-width:100%;height:auto;">
         <figcaption class="small">Profile photo</figcaption>
       </figure>
 
       <article id="introOutput">
-        <!-- Filled by JS to mirror your Introduction page -->
+        <h3 class="sr-only">Introduction details</h3>
+        <!-- JS will replace the content below -->
       </article>
 
       <p class="small mt-1">
@@ -140,14 +149,14 @@
     </div>
   </footer>
 
-  <!-- Validator cloud (course requirement) -->
+  <!-- Validator cloud -->
   <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
 
   <script>
-    // --- Helpers ---
-    const $ = sel => document.querySelector(sel);
-    const $$ = sel => Array.from(document.querySelectorAll(sel));
-    const cap = s => s ? s.trim().toLowerCase().replace(/^\w/u, c => c.toUpperCase()) : "";
+    // --- Helpers (wrap single params in parentheses) ---
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+    const cap = (s) => s ? s.trim().toLowerCase().replace(/^\w/u, (c) => c.toUpperCase()) : "";
 
     // Default "D.I." values (your info, hardcoded)
     const DI = {
@@ -156,7 +165,7 @@
       last: "Evans",
       city: "Charlotte",
       state: "NC",
-      photo: "images/DSC00568.jpg", // change if needed or leave blank
+      photo: "images/DSC00568.jpg", // optional
       background: "Photographer & creator focusing on automotive visuals and clean web UI.",
       goals: [
         "Master clean, valid HTML and CSS",
@@ -208,7 +217,7 @@
       $("#goal3").value = DI.goals[2] || "";
 
       $("#courseFields").innerHTML = "";
-      (DI.courses || []).forEach(c => addCourseField(c));
+      (DI.courses || []).forEach((c) => addCourseField(c));
     }
 
     // Render the output to match your Introduction page style
@@ -224,14 +233,14 @@
       // goals list
       out.push(`<section aria-labelledby="goals"><h3 id="goals">Goals for the Course</h3>
         <ul>
-          ${data.goals.filter(Boolean).map(g => `<li>${g}</li>`).join("")}
+          ${data.goals.filter(Boolean).map((g) => `<li>${g}</li>`).join("")}
         </ul>
       </section>`);
 
       // courses list
       out.push(`<section aria-labelledby="courses"><h3 id="courses">Current / Recent Courses</h3>
         <ul>
-          ${data.courses.filter(Boolean).map(c => `<li>${c}</li>`).join("")}
+          ${data.courses.filter(Boolean).map((c) => `<li>${c}</li>`).join("")}
         </ul>
       </section>`);
 
@@ -242,6 +251,7 @@
         $("#photoPreview").src = data.photo;
         $("#photoFigure").style.display = "block";
       } else {
+        // keep a valid src, just hide the figure
         $("#photoFigure").style.display = "none";
       }
     }
@@ -259,7 +269,7 @@
         }
       }
       const goals = [$("#goal1").value.trim(), $("#goal2").value.trim(), $("#goal3").value.trim()];
-      const courses = $$("#courseFields input").map(i => i.value.trim()).filter(Boolean);
+      const courses = $$("#courseFields input").map((i) => i.value.trim()).filter(Boolean);
 
       return {
         first: cap($("#first_name").value),
