@@ -1,7 +1,14 @@
 :root{
-  --ink:#0f1115; --muted:#4b5563; --bg:#ffffff;
-  --accent:#2563eb; --light:#f3f4f6; --border:#e5e7eb;
+  /* Streamline Studios brand */
+  --ink:#0f1115;      /* text */
+  --muted:#4b5563;    /* secondary text */
+  --bg:#ffffff;       /* page bg */
+  --accent:#ff6a00;   /* orange brand accent */
+  --light:#f7f7f7;    /* subtle hovers */
+  --border:#e5e7eb;   /* borders */
+  --radius:12px;
 }
+
 
 *{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
@@ -60,3 +67,4 @@ p{ margin:.25rem 0 .75rem; color:var(--muted); }
              display:none; flex-direction:column; padding:.75rem 1rem; }
   .site-nav.open{ display:flex; }
 }
+
