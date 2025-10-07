@@ -68,3 +68,6 @@ p{ margin:.25rem 0 .75rem; color:var(--muted); }
   .site-nav.open{ display:flex; }
 }
 
+body{ font:16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+h1,h2,h3{ font-family:Poppins, Inter, system-ui, sans-serif; }
+
