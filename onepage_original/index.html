@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>One-Page Starter</title>
+
+  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32" type="image/png" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#home">OnePage</a>
+    <button id="navToggle" class="nav-toggle" aria-expanded="false" aria-controls="siteNav">Menu</button>
+    <nav id="siteNav" class="site-nav" aria-label="Primary">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="panel hero" tabindex="-1" aria-labelledby="home-title">
+      <h1 id="home-title">Welcome to the One-Page Starter</h1>
+      <p>This single HTML page uses anchors and a little JS for smooth UX.</p>
+      <a class="button" href="#about">Learn more</a>
+    </section>
+
+    <section id="about" class="panel" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p>Use this section to describe your project. Keep copy short and scannable.</p>
+    </section>
+
+    <section id="services" class="panel" aria-labelledby="services-title">
+      <h2 id="services-title">Services</h2>
+      <ul class="cards">
+        <li class="card"><h3>Item One</h3><p>Short summary of value.</p></li>
+        <li class="card"><h3>Item Two</h3><p>Short summary of value.</p></li>
+        <li class="card"><h3>Item Three</h3><p>Short summary of value.</p></li>
+      </ul>
+    </section>
+
+    <section id="gallery" class="panel" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Gallery</h2>
+      <div class="grid">
+        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+        <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="panel" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <form class="contact" action="#" method="post" onsubmit="return false;">
+        <label>
+          <span>Name</span>
+          <input type="text" required>
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" required>
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea rows="4" required></textarea>
+        </label>
+        <button class="button" type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="../">Back to WEB115 Home</a></p>
+  </footer>
+
+  <!-- tiny JS for menu + active-link highlight -->
+  <script src="scripts/main.js"></script>
+
+  <!-- validator bubble -->
+  <script src="https://lint.page/kit/880bd5.js" crossorigin="anonymous"></script>
+</body>
+</html>
