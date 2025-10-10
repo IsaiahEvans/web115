@@ -124,3 +124,6 @@ figcaption{ font-size: .9rem; color: var(--ink-2); }
   border: 1px solid var(--ink);
   border-radius: .6rem;
   text-decor
+
+
+   .brand-logo { width:160px; height:auto; }
